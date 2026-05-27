@@ -1,0 +1,44 @@
+name: Antigravity Forensics Platform CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  test_and_build:
+    name: Run Verification Tests & Build Docker Image
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Source Code Repository
+      uses: actions/checkout@v3
+
+    - name: Initialize Python Runtime Environment
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+
+    - name: Install Ingress Packages & Graphics Drivers
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libgl1-mesa-glx libglib2.0-0 libpq-dev
+
+    - name: Cache Pip Packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install System Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install email-validator reportlab
+
+    - name: Run Forensic Diagnostic Unit Tests
+      run: |
+        python -m unittest discover -s tests

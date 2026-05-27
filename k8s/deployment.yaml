@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: antigravity-forensics-web
+  namespace: default
+  labels:
+    app: antigravity-forensics
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: antigravity-forensics
+  template:
+    metadata:
+      labels:
+        app: antigravity-forensics
+    spec:
+      containers:
+      - name: web-app
+        image: kumarchandan001/deepfake-detection:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DATABASE_URL
+          value: "postgresql+asyncpg://forensic_admin:enterprise_secure_password_signature@postgres-service:5432/forensics"
+        - name: AWS_S3_BUCKET
+          value: "antigravity-forensics-media"
+        resources:
+          limits:
+            cpu: "2"
+            memory: 4Gi
+          requests:
+            cpu: "500m"
+            memory: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: antigravity-forensics-service
+  namespace: default
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 8000
+    protocol: TCP
+  selector:
+    app: antigravity-forensics

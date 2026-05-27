@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: antigravity_forensics_db
+    restart: always
+    environment:
+      POSTGRES_USER: forensic_admin
+      POSTGRES_PASSWORD: enterprise_secure_password_signature
+      POSTGRES_DB: forensics
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U forensic_admin -d forensics"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: antigravity_forensics_web
+    restart: always
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://forensic_admin:enterprise_secure_password_signature@db:5432/forensics
+      - AWS_S3_BUCKET=antigravity-forensics-media
+      - PORT=8000
+    expose:
+      - "8000"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./outputs:/app/outputs
+      - ./ai_engine/checkpoints:/app/ai_engine/checkpoints
+    depends_on:
+      db:
+        condition: service_healthy
+
+  nginx:
+    image: nginx:alpine
+    container_name: antigravity_forensics_proxy
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - web
+
+volumes:
+  postgres_data:

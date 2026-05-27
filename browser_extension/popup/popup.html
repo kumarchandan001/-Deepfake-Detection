@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Antigravity Forensics</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="icon.png" alt="Logo" class="logo">
+      <h3>Antigravity Trust</h3>
+    </div>
+    
+    <div class="status-box">
+      <p class="status-title">Active Site Trust Index</p>
+      <div class="score-row">
+        <span class="trust-score">94%</span>
+        <span class="badge badge-secure">SECURE SITE</span>
+      </div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric-row">
+        <span>Images Scanned:</span>
+        <span id="scanned-count" class="metric-value">12</span>
+      </div>
+      <div class="metric-row">
+        <span>Deepfakes Blocked:</span>
+        <span id="fake-count" class="metric-value value-warn">1</span>
+      </div>
+    </div>
+
+    <div class="config-section">
+      <label for="api-key">API Verification Key</label>
+      <input type="password" id="api-key" placeholder="Enter X-API-Key..." value="df_pub_key_pro_forensics_456">
+      <button id="save-btn">Save Key</button>
+    </div>
+
+    <div class="footer">
+      <span>v1.0.0</span>
+      <a href="https://console.antigravity-trust.com" target="_blank">Console Dashboard</a>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

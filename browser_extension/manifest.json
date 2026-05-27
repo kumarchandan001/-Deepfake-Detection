@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Antigravity Media Trust & Deepfake Detector",
+  "version": "1.0.0",
+  "description": "Scans and verifies image, audio, and video content authenticity in real-time across web pages.",
+  "permissions": [
+    "activeTab",
+    "contextMenus",
+    "storage",
+    "notifications"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content_script.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "popup/icon.png",
+      "48": "popup/icon.png",
+      "128": "popup/icon.png"
+    }
+  },
+  "host_permissions": [
+    "https://api.antigravity-trust.com/*"
+  ]
+}

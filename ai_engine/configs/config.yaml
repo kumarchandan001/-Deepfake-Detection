@@ -1,0 +1,30 @@
+project:
+  name: "Deepfake Detection Platform"
+  version: "1.0.0"
+  description: "Enterprise-grade AI platform to analyze manipulated media assets."
+
+dataset:
+  root_dir: "datasets"
+  target_size: [224, 224]
+  batch_size: 16
+  num_workers: 4
+  split_ratios: [0.7, 0.15, 0.15]
+
+model:
+  backbone: "efficientnet_b0"  # Options: cnn, efficientnet_b0
+  pretrained: true
+  dropout_rate: 0.5
+  num_classes: 1
+  checkpoint_dir: "ai_engine/checkpoints"
+
+training:
+  epochs: 15
+  learning_rate: 0.0001
+  optimizer: "adam"  # Options: adam, sgd
+  mixed_precision: true
+  patience: 5
+  accumulation_steps: 2
+
+inference:
+  confidence_threshold: 0.5
+  gradcam_output_dir: "outputs"
