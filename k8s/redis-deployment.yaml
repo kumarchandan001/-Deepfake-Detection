@@ -1,0 +1,121 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deepguard-redis
+  namespace: deepguard-ai
+  labels:
+    app: deepguard-redis
+    app.kubernetes.io/name: deepguard-redis
+    app.kubernetes.io/component: cache
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deepguard-redis
+  template:
+    metadata:
+      labels:
+        app: deepguard-redis
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9121"
+    spec:
+      containers:
+        - name: redis
+          image: redis:7.2-alpine
+          ports:
+            - containerPort: 6379
+              name: redis
+          command:
+            - redis-server
+            - "--maxmemory"
+            - "2gb"
+            - "--maxmemory-policy"
+            - "allkeys-lru"
+            - "--appendonly"
+            - "yes"
+            - "--appendfsync"
+            - "everysec"
+            - "--requirepass"
+            - "$(REDIS_PASSWORD)"
+            - "--tcp-keepalive"
+            - "60"
+            - "--timeout"
+            - "300"
+            - "--lfu-log-factor"
+            - "10"
+          env:
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: deepguard-secrets
+                  key: REDIS_PASSWORD
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "512Mi"
+            limits:
+              cpu: "1"
+              memory: "2Gi"
+          readinessProbe:
+            exec:
+              command:
+                - redis-cli
+                - "-a"
+                - "$(REDIS_PASSWORD)"
+                - ping
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 3
+          livenessProbe:
+            exec:
+              command:
+                - redis-cli
+                - "-a"
+                - "$(REDIS_PASSWORD)"
+                - ping
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            timeoutSeconds: 5
+          volumeMounts:
+            - name: redis-data
+              mountPath: /data
+        - name: redis-exporter
+          image: oliver006/redis_exporter:v1.55.0
+          ports:
+            - containerPort: 9121
+              name: metrics
+          env:
+            - name: REDIS_ADDR
+              value: "redis://localhost:6379"
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: deepguard-secrets
+                  key: REDIS_PASSWORD
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "100m"
+              memory: "128Mi"
+      volumes:
+        - name: redis-data
+          persistentVolumeClaim:
+            claimName: deepguard-redis-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: deepguard-redis-pvc
+  namespace: deepguard-ai
+  labels:
+    app.kubernetes.io/name: deepguard-redis
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: gp3-encrypted
+  resources:
+    requests:
+      storage: 10Gi

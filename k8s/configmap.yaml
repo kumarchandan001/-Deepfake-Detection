@@ -1,0 +1,83 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: deepguard-config
+  namespace: deepguard-ai
+  labels:
+    app.kubernetes.io/name: deepguard-api
+    app.kubernetes.io/component: config
+data:
+  # ─── Application Settings ───────────────────────────────────────────
+  APP_ENV: "production"
+  APP_NAME: "DeepGuard AI Platform"
+  APP_VERSION: "2.0.0"
+  LOG_LEVEL: "INFO"
+  LOG_FORMAT: "json"
+
+  # ─── API Gateway Configuration ──────────────────────────────────────
+  API_HOST: "0.0.0.0"
+  API_PORT: "8000"
+  API_WORKERS: "4"
+  API_TIMEOUT: "120"
+  CORS_ORIGINS: "https://dashboard.deepguard.ai,https://admin.deepguard.ai"
+  RATE_LIMIT_REQUESTS_PER_MINUTE: "120"
+
+  # ─── Database Configuration ─────────────────────────────────────────
+  DB_DRIVER: "postgresql+asyncpg"
+  DB_HOST: "deepguard-postgres-svc"
+  DB_PORT: "5432"
+  DB_NAME: "deepguard_platform"
+  DB_POOL_SIZE: "20"
+  DB_MAX_OVERFLOW: "10"
+  DB_POOL_TIMEOUT: "30"
+  DB_POOL_RECYCLE: "3600"
+
+  # ─── Redis Configuration ────────────────────────────────────────────
+  REDIS_HOST: "deepguard-redis-svc"
+  REDIS_PORT: "6379"
+  REDIS_DB: "0"
+  REDIS_MAX_CONNECTIONS: "50"
+  REDIS_SOCKET_TIMEOUT: "5"
+
+  # ─── AI Inference Configuration ─────────────────────────────────────
+  MODEL_REGISTRY_PATH: "/models"
+  DEFAULT_BATCH_SIZE: "8"
+  MAX_INFERENCE_TIMEOUT_SEC: "60"
+  ENSEMBLE_MIN_MODELS: "3"
+  GPU_MEMORY_FRACTION: "0.85"
+  INFERENCE_QUEUE_MAX_SIZE: "1000"
+
+  # ─── Object Storage (S3-Compatible) ─────────────────────────────────
+  S3_ENDPOINT: "https://s3.amazonaws.com"
+  S3_BUCKET_EVIDENCE: "deepguard-evidence-vault"
+  S3_BUCKET_MODELS: "deepguard-model-registry"
+  S3_BUCKET_REPORTS: "deepguard-forensic-reports"
+  S3_REGION: "us-east-1"
+
+  # ─── Monitoring & Observability ─────────────────────────────────────
+  PROMETHEUS_ENABLED: "true"
+  PROMETHEUS_PORT: "9090"
+  JAEGER_ENDPOINT: "http://jaeger-collector:14268/api/traces"
+  OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector:4317"
+  OTEL_SERVICE_NAME: "deepguard-api"
+
+  # ─── Feature Flags ──────────────────────────────────────────────────
+  FF_REALTIME_DETECTION: "true"
+  FF_GRAPHQL_SUBSCRIPTIONS: "true"
+  FF_ADVERSARIAL_DEFENSE: "true"
+  FF_CAMPAIGN_INTELLIGENCE: "true"
+  FF_EVIDENCE_VAULT: "true"
+  FF_SOC_DASHBOARD: "true"
+
+  # ─── SaaS Platform ──────────────────────────────────────────────────
+  STRIPE_WEBHOOK_PATH: "/api/v1/saas/webhook"
+  FREE_TIER_DAILY_LIMIT: "10"
+  PRO_TIER_MONTHLY_LIMIT: "5000"
+  ENTERPRISE_TIER_MONTHLY_LIMIT: "10000000"
+
+  # ─── Security ───────────────────────────────────────────────────────
+  JWT_ALGORITHM: "HS256"
+  JWT_EXPIRY_MINUTES: "60"
+  BCRYPT_ROUNDS: "12"
+  MAX_UPLOAD_SIZE_MB: "500"
+  ALLOWED_MEDIA_TYPES: "image/jpeg,image/png,image/webp,video/mp4,video/webm,audio/wav,audio/mp3"

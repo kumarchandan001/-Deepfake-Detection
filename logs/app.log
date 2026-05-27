@@ -2406,3 +2406,25 @@
 [2026-05-27 23:40:07,137] [INFO] [websocket_manager] [websocket_manager.py:21] - New WebSocket connection established. Total active: 1
 [2026-05-27 23:40:07,140] [INFO] [websocket_manager] [websocket_manager.py:29] - WebSocket disconnected. Active remaining: 0
 [2026-05-27 23:40:07,140] [INFO] [realtime_routes] [realtime_routes.py:70] - Client closed realtime WebSocket channel.
+[2026-05-28 00:02:09,964] [INFO] [graphql_resolvers] [resolvers.py:196] - Seeded demo data: 12 detections, 8 threats, 3 campaigns, 4 cases
+[2026-05-28 00:02:09,993] [INFO] [alerting_rules] [alerting_rules.py:359] - Seeded 5 default alert rules
+[2026-05-28 00:02:09,993] [INFO] [alerting_rules] [alerting_rules.py:364] - Registered alert rule: rule_test_infrastructure_alert - Infrastructure Test Metric Warning
+[2026-05-28 00:02:09,995] [INFO] [alerting_rules] [alerting_rules.py:154] - [Webhook] Alert dispatched: [HIGH] Infrastructure Test Metric Warning (severity=HIGH)
+[2026-05-28 00:02:09,995] [INFO] [alerting_rules] [alerting_rules.py:164] - [Slack] Alert dispatched: 🟠 *HIGH* | [HIGH] Infrastructure Test Metric Warning
+Fires when test metric exce...
+[2026-05-28 00:02:09,999] [INFO] [alerting_rules] [alerting_rules.py:464] - 🚨 Alert fired: [HIGH] Infrastructure Test Metric Warning | Channels: {'webhook': True, 'slack': True}
+[2026-05-28 00:02:10,000] [INFO] [alerting_rules] [alerting_rules.py:474] - Alert alert_0d6499f0 acknowledged by operator_test
+[2026-05-28 00:02:10,001] [INFO] [alerting_rules] [alerting_rules.py:483] - Alert alert_0d6499f0 resolved
+[2026-05-28 00:02:10,001] [INFO] [alerting_rules] [alerting_rules.py:369] - Deregistered alert rule: rule_test_infrastructure_alert
+[2026-05-28 00:02:11,147] [INFO] [health_checks] [health_checks.py:461] - Health diagnostic complete: DEGRADED (H=3, D=5, U=0), took 1133.79ms
+[2026-05-28 00:02:34,814] [INFO] [graphql_resolvers] [resolvers.py:196] - Seeded demo data: 12 detections, 8 threats, 3 campaigns, 4 cases
+[2026-05-28 00:02:34,834] [INFO] [alerting_rules] [alerting_rules.py:359] - Seeded 5 default alert rules
+[2026-05-28 00:02:34,834] [INFO] [alerting_rules] [alerting_rules.py:364] - Registered alert rule: rule_test_infrastructure_alert - Infrastructure Test Metric Warning
+[2026-05-28 00:02:34,836] [INFO] [alerting_rules] [alerting_rules.py:154] - [Webhook] Alert dispatched: [HIGH] Infrastructure Test Metric Warning (severity=HIGH)
+[2026-05-28 00:02:34,836] [INFO] [alerting_rules] [alerting_rules.py:164] - [Slack] Alert dispatched: 🟠 *HIGH* | [HIGH] Infrastructure Test Metric Warning
+Fires when test metric exce...
+[2026-05-28 00:02:34,839] [INFO] [alerting_rules] [alerting_rules.py:464] - 🚨 Alert fired: [HIGH] Infrastructure Test Metric Warning | Channels: {'webhook': True, 'slack': True}
+[2026-05-28 00:02:34,842] [INFO] [alerting_rules] [alerting_rules.py:474] - Alert alert_fd1d774e acknowledged by operator_test
+[2026-05-28 00:02:34,842] [INFO] [alerting_rules] [alerting_rules.py:483] - Alert alert_fd1d774e resolved
+[2026-05-28 00:02:34,843] [INFO] [alerting_rules] [alerting_rules.py:369] - Deregistered alert rule: rule_test_infrastructure_alert
+[2026-05-28 00:02:35,901] [INFO] [health_checks] [health_checks.py:461] - Health diagnostic complete: DEGRADED (H=3, D=5, U=0), took 1038.39ms

@@ -1,0 +1,88 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: deepguard-api-svc
+  namespace: deepguard-ai
+  labels:
+    app.kubernetes.io/name: deepguard-api
+    app.kubernetes.io/component: api-gateway
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8000"
+    prometheus.io/path: "/metrics"
+spec:
+  type: ClusterIP
+  selector:
+    app: deepguard-api
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8000
+      protocol: TCP
+    - name: websocket
+      port: 8001
+      targetPort: 8001
+      protocol: TCP
+    - name: metrics
+      port: 9090
+      targetPort: 9090
+      protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: deepguard-redis-svc
+  namespace: deepguard-ai
+  labels:
+    app.kubernetes.io/name: deepguard-redis
+    app.kubernetes.io/component: cache
+spec:
+  type: ClusterIP
+  selector:
+    app: deepguard-redis
+  ports:
+    - name: redis
+      port: 6379
+      targetPort: 6379
+      protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: deepguard-postgres-svc
+  namespace: deepguard-ai
+  labels:
+    app.kubernetes.io/name: deepguard-postgres
+    app.kubernetes.io/component: database
+spec:
+  type: ClusterIP
+  selector:
+    app: deepguard-postgres
+  ports:
+    - name: postgres
+      port: 5432
+      targetPort: 5432
+      protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: deepguard-gpu-worker-svc
+  namespace: deepguard-ai
+  labels:
+    app.kubernetes.io/name: deepguard-gpu-worker
+    app.kubernetes.io/component: inference
+spec:
+  type: ClusterIP
+  clusterIP: None  # Headless for StatefulSet
+  selector:
+    app: deepguard-gpu-worker
+  ports:
+    - name: grpc
+      port: 50051
+      targetPort: 50051
+      protocol: TCP
+    - name: ray
+      port: 10001
+      targetPort: 10001
+      protocol: TCP

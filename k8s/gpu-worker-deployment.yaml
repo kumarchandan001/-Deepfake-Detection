@@ -1,0 +1,222 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deepguard-gpu-worker
+  namespace: deepguard-ai
+  labels:
+    app: deepguard-gpu-worker
+    app.kubernetes.io/name: deepguard-gpu-worker
+    app.kubernetes.io/component: inference
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: deepguard-gpu-worker
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: deepguard-gpu-worker
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+    spec:
+      # ─── GPU Node Selection ──────────────────────────────────────────
+      nodeSelector:
+        nvidia.com/gpu.present: "true"
+        cloud.google.com/gke-accelerator: "nvidia-tesla-t4"
+      tolerations:
+        - key: "nvidia.com/gpu"
+          operator: "Exists"
+          effect: "NoSchedule"
+        - key: "dedicated"
+          operator: "Equal"
+          value: "gpu-inference"
+          effect: "NoSchedule"
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - deepguard-gpu-worker
+                topologyKey: kubernetes.io/hostname
+
+      # ─── Init Container: Model Download ───────────────────────────────
+      initContainers:
+        - name: model-loader
+          image: deepguard/model-loader:latest
+          command:
+            - /bin/sh
+            - -c
+            - |
+              echo "Downloading AI models from registry..."
+              mkdir -p /models/efficientnet /models/xception /models/wav2vec /models/ensemble
+              # In production, pull from S3/GCS model registry
+              echo "Models staged successfully."
+          volumeMounts:
+            - name: model-storage
+              mountPath: /models
+          env:
+            - name: S3_BUCKET
+              valueFrom:
+                configMapKeyRef:
+                  name: deepguard-config
+                  key: S3_BUCKET_MODELS
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: deepguard-secrets
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: deepguard-secrets
+                  key: AWS_SECRET_ACCESS_KEY
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
+            limits:
+              cpu: "1"
+              memory: "2Gi"
+
+      # ─── Main Inference Container ──────────────────────────────────────
+      containers:
+        - name: gpu-inference-worker
+          image: deepguard/inference-worker:2.0.0
+          ports:
+            - containerPort: 50051
+              name: grpc
+            - containerPort: 10001
+              name: ray
+            - containerPort: 9090
+              name: metrics
+          env:
+            - name: NVIDIA_VISIBLE_DEVICES
+              value: "all"
+            - name: NVIDIA_DRIVER_CAPABILITIES
+              value: "compute,utility"
+            - name: CUDA_VISIBLE_DEVICES
+              value: "0"
+            - name: MODEL_PATH
+              value: "/models"
+            - name: WORKER_CONCURRENCY
+              value: "4"
+            - name: MAX_BATCH_SIZE
+              value: "8"
+            - name: GPU_MEMORY_FRACTION
+              value: "0.85"
+            - name: RAY_ADDRESS
+              value: "auto"
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: deepguard-secrets
+                  key: REDIS_URL
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: deepguard-secrets
+                  key: DATABASE_URL
+          envFrom:
+            - configMapRef:
+                name: deepguard-config
+          resources:
+            requests:
+              cpu: "4"
+              memory: "8Gi"
+              nvidia.com/gpu: "1"
+            limits:
+              cpu: "8"
+              memory: "16Gi"
+              nvidia.com/gpu: "1"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 9090
+            initialDelaySeconds: 30
+            periodSeconds: 15
+            timeoutSeconds: 10
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 9090
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            timeoutSeconds: 15
+            failureThreshold: 5
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 9090
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 30  # 5 min startup window for model loading
+          volumeMounts:
+            - name: model-storage
+              mountPath: /models
+              readOnly: true
+            - name: shm
+              mountPath: /dev/shm
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                  - /bin/sh
+                  - -c
+                  - |
+                    echo "Draining inference queue..."
+                    sleep 30
+                    echo "Worker drained, shutting down."
+
+      # ─── DCGM GPU Metrics Exporter ────────────────────────────────────
+        - name: dcgm-exporter
+          image: nvcr.io/nvidia/k8s/dcgm-exporter:3.3.0-3.2.0-ubuntu22.04
+          ports:
+            - containerPort: 9400
+              name: gpu-metrics
+          env:
+            - name: DCGM_EXPORTER_LISTEN
+              value: ":9400"
+            - name: DCGM_EXPORTER_KUBERNETES
+              value: "true"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "200m"
+              memory: "256Mi"
+
+      volumes:
+        - name: model-storage
+          emptyDir:
+            sizeLimit: "20Gi"
+        - name: shm
+          emptyDir:
+            medium: Memory
+            sizeLimit: "4Gi"
+
+      terminationGracePeriodSeconds: 60
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: deepguard-gpu-worker-pdb
+  namespace: deepguard-ai
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: deepguard-gpu-worker
