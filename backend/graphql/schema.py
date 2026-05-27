@@ -233,6 +233,15 @@ async def graphql_endpoint(request: Request):
             }
         })
 
+    except HTTPException as e:
+        return JSONResponse(
+            status_code=e.status_code,
+            content={
+                "detail": e.detail,
+                "data": None,
+                "errors": [{"message": e.detail}]
+            }
+        )
     except ValueError as e:
         return JSONResponse(
             status_code=400,

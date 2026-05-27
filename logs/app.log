@@ -2428,3 +2428,157 @@ Fires when test metric exce...
 [2026-05-28 00:02:34,842] [INFO] [alerting_rules] [alerting_rules.py:483] - Alert alert_fd1d774e resolved
 [2026-05-28 00:02:34,843] [INFO] [alerting_rules] [alerting_rules.py:369] - Deregistered alert rule: rule_test_infrastructure_alert
 [2026-05-28 00:02:35,901] [INFO] [health_checks] [health_checks.py:461] - Health diagnostic complete: DEGRADED (H=3, D=5, U=0), took 1038.39ms
+[2026-05-28 00:02:59,097] [INFO] [graphql_resolvers] [resolvers.py:196] - Seeded demo data: 12 detections, 8 threats, 3 campaigns, 4 cases
+[2026-05-28 00:02:59,122] [ERROR] [graphql_schema] [schema.py:242] - GraphQL error: 400: Unknown operation: invalid_operation
+[2026-05-28 00:02:59,124] [INFO] [graphql_resolvers] [resolvers.py:395] - Threat evt_f3ec2680 acknowledged by analyst_jones
+[2026-05-28 00:02:59,126] [INFO] [graphql_resolvers] [resolvers.py:450] - Added evidence 0b84d775-24f0-4bb9-9a33-1503e862f51e to case case_9e317dc4
+[2026-05-28 00:02:59,128] [INFO] [graphql_resolvers] [resolvers.py:465] - Created alert rule: 97fecdb8-7f6a-40da-9b51-8e606ee60fe2 - High Volume Manipulations Warning
+[2026-05-28 00:02:59,130] [INFO] [graphql_resolvers] [resolvers.py:418] - Created forensic case: 26ac8dca-89cc-4637-bb91-fd0fe2fe0932 - Deepfake Impersonation of Executive officers
+[2026-05-28 00:02:59,132] [INFO] [graphql_resolvers] [resolvers.py:404] - Threat evt_f3ec2680 escalated: Coordinated GAN injection suspected across multiple enterprise assets.
+[2026-05-28 00:02:59,133] [INFO] [graphql_resolvers] [resolvers.py:387] - New detection submitted: det_108b54de, verdict=MANIPULATED
+[2026-05-28 00:02:59,135] [INFO] [graphql_resolvers] [resolvers.py:465] - Created alert rule: f86d5bfc-a1bb-4570-a923-03f5bd37fa3e - Temporary Silent Rule
+[2026-05-28 00:02:59,136] [INFO] [graphql_resolvers] [resolvers.py:473] - Alert rule f86d5bfc-a1bb-4570-a923-03f5bd37fa3e disabled
+[2026-05-28 00:02:59,138] [INFO] [graphql_resolvers] [resolvers.py:429] - Case case_9e317dc4 status updated to RESOLVED
+[2026-05-28 00:02:59,167] [INFO] [graphql_resolvers] [resolvers.py:214] - Resolved detection: det_cf813a97
+[2026-05-28 00:02:59,168] [INFO] [graphql_resolvers] [resolvers.py:241] - Listed 5 detections
+[2026-05-28 00:02:59,181] [INFO] [graphql_schema] [schema.py:274] - WebSocket connection opened for tenant: default_tenant
+[2026-05-28 00:02:59,182] [INFO] [graphql_schema] [schema.py:359] - WebSocket disconnected for tenant: default_tenant
+[2026-05-28 00:02:59,182] [INFO] [graphql_schema] [schema.py:366] - Cleaned up 0 active streams for tenant default_tenant
+[2026-05-28 00:02:59,184] [INFO] [graphql_schema] [schema.py:274] - WebSocket connection opened for tenant: default_tenant
+[2026-05-28 00:02:59,185] [INFO] [graphql_schema] [schema.py:359] - WebSocket disconnected for tenant: default_tenant
+[2026-05-28 00:02:59,185] [INFO] [graphql_schema] [schema.py:366] - Cleaned up 0 active streams for tenant default_tenant
+[2026-05-28 00:02:59,187] [INFO] [graphql_schema] [schema.py:274] - WebSocket connection opened for tenant: default_tenant
+[2026-05-28 00:02:59,187] [INFO] [graphql_subscriptions] [subscriptions.py:144] - New subscriber sub_435828930ad4 for tenant *, topics={'platform.metrics', 'system.health'}, replay=0
+[2026-05-28 00:03:29,190] [INFO] [graphql_subscriptions] [subscriptions.py:156] - Removed subscriber sub_435828930ad4
+[2026-05-28 00:03:29,191] [INFO] [graphql_schema] [schema.py:359] - WebSocket disconnected for tenant: default_tenant
+[2026-05-28 00:03:29,191] [INFO] [graphql_schema] [schema.py:366] - Cleaned up 0 active streams for tenant default_tenant
+[2026-05-28 00:03:29,192] [INFO] [alerting_rules] [alerting_rules.py:359] - Seeded 5 default alert rules
+[2026-05-28 00:03:29,192] [INFO] [alerting_rules] [alerting_rules.py:364] - Registered alert rule: rule_test_infrastructure_alert - Infrastructure Test Metric Warning
+[2026-05-28 00:03:29,193] [INFO] [alerting_rules] [alerting_rules.py:154] - [Webhook] Alert dispatched: [HIGH] Infrastructure Test Metric Warning (severity=HIGH)
+[2026-05-28 00:03:29,193] [INFO] [alerting_rules] [alerting_rules.py:164] - [Slack] Alert dispatched: 🟠 *HIGH* | [HIGH] Infrastructure Test Metric Warning
+Fires when test metric exce...
+[2026-05-28 00:03:29,196] [INFO] [alerting_rules] [alerting_rules.py:464] - 🚨 Alert fired: [HIGH] Infrastructure Test Metric Warning | Channels: {'webhook': True, 'slack': True}
+[2026-05-28 00:03:29,198] [INFO] [alerting_rules] [alerting_rules.py:474] - Alert alert_9f5dd510 acknowledged by operator_test
+[2026-05-28 00:03:29,198] [INFO] [alerting_rules] [alerting_rules.py:483] - Alert alert_9f5dd510 resolved
+[2026-05-28 00:03:29,198] [INFO] [alerting_rules] [alerting_rules.py:369] - Deregistered alert rule: rule_test_infrastructure_alert
+[2026-05-28 00:03:30,246] [INFO] [health_checks] [health_checks.py:461] - Health diagnostic complete: DEGRADED (H=3, D=5, U=0), took 1031.09ms
+[2026-05-28 00:04:04,447] [INFO] [graphql_resolvers] [resolvers.py:196] - Seeded demo data: 12 detections, 8 threats, 3 campaigns, 4 cases
+[2026-05-28 00:04:04,478] [INFO] [graphql_resolvers] [resolvers.py:395] - Threat evt_95b82d3c acknowledged by analyst_jones
+[2026-05-28 00:04:04,480] [INFO] [graphql_resolvers] [resolvers.py:450] - Added evidence 001d3195-b057-40dd-a423-73ff98902ccf to case case_fb92132a
+[2026-05-28 00:04:04,482] [INFO] [graphql_resolvers] [resolvers.py:465] - Created alert rule: 0c7ebd79-e347-4455-a240-8b1c5c726b5b - High Volume Manipulations Warning
+[2026-05-28 00:04:04,484] [INFO] [graphql_resolvers] [resolvers.py:418] - Created forensic case: 6de3b01f-e53c-4b78-acc7-ddb3d03bffe4 - Deepfake Impersonation of Executive officers
+[2026-05-28 00:04:04,487] [INFO] [graphql_resolvers] [resolvers.py:404] - Threat evt_95b82d3c escalated: Coordinated GAN injection suspected across multiple enterprise assets.
+[2026-05-28 00:04:04,489] [INFO] [graphql_resolvers] [resolvers.py:387] - New detection submitted: det_e21ecdd9, verdict=AUTHENTIC
+[2026-05-28 00:04:04,491] [INFO] [graphql_resolvers] [resolvers.py:465] - Created alert rule: b78345cd-0b3a-4878-8a0b-b198328f4bce - Temporary Silent Rule
+[2026-05-28 00:04:04,492] [INFO] [graphql_resolvers] [resolvers.py:473] - Alert rule b78345cd-0b3a-4878-8a0b-b198328f4bce disabled
+[2026-05-28 00:04:04,495] [INFO] [graphql_resolvers] [resolvers.py:429] - Case case_fb92132a status updated to RESOLVED
+[2026-05-28 00:04:04,502] [INFO] [graphql_resolvers] [resolvers.py:214] - Resolved detection: det_6f78a339
+[2026-05-28 00:04:04,504] [INFO] [graphql_resolvers] [resolvers.py:241] - Listed 5 detections
+[2026-05-28 00:04:04,519] [INFO] [graphql_schema] [schema.py:279] - WebSocket connection opened for tenant: default_tenant
+[2026-05-28 00:04:04,520] [INFO] [graphql_schema] [schema.py:364] - WebSocket disconnected for tenant: default_tenant
+[2026-05-28 00:04:04,520] [INFO] [graphql_schema] [schema.py:371] - Cleaned up 0 active streams for tenant default_tenant
+[2026-05-28 00:04:04,522] [INFO] [graphql_schema] [schema.py:279] - WebSocket connection opened for tenant: default_tenant
+[2026-05-28 00:04:04,522] [INFO] [graphql_schema] [schema.py:364] - WebSocket disconnected for tenant: default_tenant
+[2026-05-28 00:04:04,522] [INFO] [graphql_schema] [schema.py:371] - Cleaned up 0 active streams for tenant default_tenant
+[2026-05-28 00:04:04,524] [INFO] [graphql_schema] [schema.py:279] - WebSocket connection opened for tenant: default_tenant
+[2026-05-28 00:04:04,524] [INFO] [graphql_subscriptions] [subscriptions.py:144] - New subscriber sub_0dee431f4ee1 for tenant *, topics={'system.health', 'platform.metrics'}, replay=0
+[2026-05-28 00:04:34,529] [INFO] [graphql_subscriptions] [subscriptions.py:156] - Removed subscriber sub_0dee431f4ee1
+[2026-05-28 00:04:34,531] [INFO] [graphql_schema] [schema.py:364] - WebSocket disconnected for tenant: default_tenant
+[2026-05-28 00:04:34,531] [INFO] [graphql_schema] [schema.py:371] - Cleaned up 0 active streams for tenant default_tenant
+[2026-05-28 00:04:34,534] [INFO] [alerting_rules] [alerting_rules.py:359] - Seeded 5 default alert rules
+[2026-05-28 00:04:34,535] [INFO] [alerting_rules] [alerting_rules.py:364] - Registered alert rule: rule_test_infrastructure_alert - Infrastructure Test Metric Warning
+[2026-05-28 00:04:34,537] [INFO] [alerting_rules] [alerting_rules.py:154] - [Webhook] Alert dispatched: [HIGH] Infrastructure Test Metric Warning (severity=HIGH)
+[2026-05-28 00:04:34,537] [INFO] [alerting_rules] [alerting_rules.py:164] - [Slack] Alert dispatched: 🟠 *HIGH* | [HIGH] Infrastructure Test Metric Warning
+Fires when test metric exce...
+[2026-05-28 00:04:34,540] [INFO] [alerting_rules] [alerting_rules.py:464] - 🚨 Alert fired: [HIGH] Infrastructure Test Metric Warning | Channels: {'webhook': True, 'slack': True}
+[2026-05-28 00:04:34,542] [INFO] [alerting_rules] [alerting_rules.py:474] - Alert alert_14b838bc acknowledged by operator_test
+[2026-05-28 00:04:34,542] [INFO] [alerting_rules] [alerting_rules.py:483] - Alert alert_14b838bc resolved
+[2026-05-28 00:04:34,542] [INFO] [alerting_rules] [alerting_rules.py:369] - Deregistered alert rule: rule_test_infrastructure_alert
+[2026-05-28 00:04:35,549] [INFO] [health_checks] [health_checks.py:461] - Health diagnostic complete: DEGRADED (H=3, D=5, U=0), took 991.85ms
+[2026-05-28 00:04:52,288] [INFO] [graphql_resolvers] [resolvers.py:196] - Seeded demo data: 12 detections, 8 threats, 3 campaigns, 4 cases
+[2026-05-28 00:04:52,317] [INFO] [graphql_resolvers] [resolvers.py:395] - Threat evt_9fbc400d acknowledged by analyst_jones
+[2026-05-28 00:04:52,320] [INFO] [graphql_resolvers] [resolvers.py:450] - Added evidence a3c5a281-b1ff-437e-98f9-f1f5f72990d6 to case case_3721bf4a
+[2026-05-28 00:04:52,322] [INFO] [graphql_resolvers] [resolvers.py:465] - Created alert rule: 13db9d32-1fbc-4cd9-8e6d-1177cceb5347 - High Volume Manipulations Warning
+[2026-05-28 00:04:52,323] [INFO] [graphql_resolvers] [resolvers.py:418] - Created forensic case: a528e3a4-ae91-4f95-8df2-9de53b11820e - Deepfake Impersonation of Executive officers
+[2026-05-28 00:04:52,325] [INFO] [graphql_resolvers] [resolvers.py:404] - Threat evt_9fbc400d escalated: Coordinated GAN injection suspected across multiple enterprise assets.
+[2026-05-28 00:04:52,329] [INFO] [graphql_resolvers] [resolvers.py:387] - New detection submitted: det_ba80c307, verdict=MANIPULATED
+[2026-05-28 00:04:52,330] [INFO] [graphql_resolvers] [resolvers.py:465] - Created alert rule: 5f27a31f-4913-4e0d-b826-85be62131599 - Temporary Silent Rule
+[2026-05-28 00:04:52,332] [INFO] [graphql_resolvers] [resolvers.py:473] - Alert rule 5f27a31f-4913-4e0d-b826-85be62131599 disabled
+[2026-05-28 00:04:52,334] [INFO] [graphql_resolvers] [resolvers.py:429] - Case case_3721bf4a status updated to RESOLVED
+[2026-05-28 00:04:52,344] [INFO] [graphql_resolvers] [resolvers.py:214] - Resolved detection: det_adf2e09c
+[2026-05-28 00:04:52,346] [INFO] [graphql_resolvers] [resolvers.py:241] - Listed 5 detections
+[2026-05-28 00:04:52,364] [INFO] [graphql_schema] [schema.py:283] - WebSocket connection opened for tenant: default_tenant
+[2026-05-28 00:04:52,364] [INFO] [graphql_schema] [schema.py:368] - WebSocket disconnected for tenant: default_tenant
+[2026-05-28 00:04:52,364] [INFO] [graphql_schema] [schema.py:375] - Cleaned up 0 active streams for tenant default_tenant
+[2026-05-28 00:04:52,366] [INFO] [graphql_schema] [schema.py:283] - WebSocket connection opened for tenant: default_tenant
+[2026-05-28 00:04:52,367] [INFO] [graphql_schema] [schema.py:368] - WebSocket disconnected for tenant: default_tenant
+[2026-05-28 00:04:52,367] [INFO] [graphql_schema] [schema.py:375] - Cleaned up 0 active streams for tenant default_tenant
+[2026-05-28 00:04:52,368] [INFO] [graphql_schema] [schema.py:283] - WebSocket connection opened for tenant: default_tenant
+[2026-05-28 00:04:52,369] [INFO] [graphql_subscriptions] [subscriptions.py:144] - New subscriber sub_85151d5c8b8a for tenant *, topics={'system.health', 'platform.metrics'}, replay=0
+[2026-05-28 00:05:22,375] [INFO] [graphql_subscriptions] [subscriptions.py:156] - Removed subscriber sub_85151d5c8b8a
+[2026-05-28 00:05:22,376] [INFO] [graphql_schema] [schema.py:368] - WebSocket disconnected for tenant: default_tenant
+[2026-05-28 00:05:22,376] [INFO] [graphql_schema] [schema.py:375] - Cleaned up 0 active streams for tenant default_tenant
+[2026-05-28 00:05:22,377] [INFO] [alerting_rules] [alerting_rules.py:359] - Seeded 5 default alert rules
+[2026-05-28 00:05:22,377] [INFO] [alerting_rules] [alerting_rules.py:364] - Registered alert rule: rule_test_infrastructure_alert - Infrastructure Test Metric Warning
+[2026-05-28 00:05:22,379] [INFO] [alerting_rules] [alerting_rules.py:154] - [Webhook] Alert dispatched: [HIGH] Infrastructure Test Metric Warning (severity=HIGH)
+[2026-05-28 00:05:22,379] [INFO] [alerting_rules] [alerting_rules.py:164] - [Slack] Alert dispatched: 🟠 *HIGH* | [HIGH] Infrastructure Test Metric Warning
+Fires when test metric exce...
+[2026-05-28 00:05:22,382] [INFO] [alerting_rules] [alerting_rules.py:464] - 🚨 Alert fired: [HIGH] Infrastructure Test Metric Warning | Channels: {'webhook': True, 'slack': True}
+[2026-05-28 00:05:22,385] [INFO] [alerting_rules] [alerting_rules.py:474] - Alert alert_27ebb7f2 acknowledged by operator_test
+[2026-05-28 00:05:22,385] [INFO] [alerting_rules] [alerting_rules.py:483] - Alert alert_27ebb7f2 resolved
+[2026-05-28 00:05:22,386] [INFO] [alerting_rules] [alerting_rules.py:369] - Deregistered alert rule: rule_test_infrastructure_alert
+[2026-05-28 00:05:23,511] [INFO] [health_checks] [health_checks.py:461] - Health diagnostic complete: DEGRADED (H=3, D=5, U=0), took 1104.8ms
+[2026-05-28 00:05:43,029] [INFO] [db_config] [config.py:15] - Targeting asynchronous database connection profile: sqlite+aiosqlite:///C:/Users/Chandan Kumar/Desktop/Deepfake-Detection/forensics.db
+[2026-05-28 00:05:43,043] [INFO] [plan_registry] [plan_registry.py:29] - Loaded SaaS config from: C:\Users\Chandan Kumar\Desktop\Deepfake-Detection\enterprise\saas\saas_config.yaml
+[2026-05-28 00:05:43,043] [INFO] [plan_registry] [plan_registry.py:116] - Registered Plan [free]: Max 300 monthly queries, Queue=cpu_low_priority
+[2026-05-28 00:05:43,044] [INFO] [plan_registry] [plan_registry.py:116] - Registered Plan [pro]: Max 5000 monthly queries, Queue=gpu_shared
+[2026-05-28 00:05:43,044] [INFO] [plan_registry] [plan_registry.py:116] - Registered Plan [enterprise]: Max 10000000 monthly queries, Queue=dedicated_ray_worker
+[2026-05-28 00:05:43,044] [INFO] [stripe_gateway] [stripe_gateway.py:29] - Mock Stripe gateway loaded and verified.
+[2026-05-28 00:05:43,044] [WARNING] [usage_tracking] [usage_tracking.py:43] - Redis is not running. Usage tracker falling back to thread-safe local memory counters.
+[2026-05-28 00:05:43,068] [INFO] [stripe_gateway] [stripe_gateway.py:29] - Mock Stripe gateway loaded and verified.
+[2026-05-28 00:05:43,069] [INFO] [subscription_manager] [subscription_manager.py:41] - Initialized default FREE subscription for tenant: tenant_billing_test
+[2026-05-28 00:05:43,070] [INFO] [subscription_manager] [subscription_manager.py:46] - Updated subscription cache for tenant tenant_billing_test: Plan=pro, Status=active
+[2026-05-28 00:05:43,072] [INFO] [billing_engine] [billing_engine.py:80] - Simulating collection charge of $199.0 for Invoice: inv_tenant_billing_test_1779906943
+[2026-05-28 00:05:43,072] [INFO] [billing_engine] [billing_engine.py:86] - Generated monthly invoice for Tenant tenant_billing_test: inv_tenant_billing_test_1779906943, Status=paid
+[2026-05-28 00:05:43,076] [INFO] [subscription_manager] [subscription_manager.py:41] - Initialized default FREE subscription for tenant: tenant_api_runner
+[2026-05-28 00:05:43,076] [INFO] [tenant_middleware] [tenant_middleware.py:32] - Registered Tenant request context scope: Tenant=tenant_api_runner, Plan=free
+[2026-05-28 00:05:43,077] [INFO] [tenant_middleware] [tenant_middleware.py:40] - Cleared request contextual tenant scopes.
+[2026-05-28 00:05:43,080] [INFO] [subscription_manager] [subscription_manager.py:41] - Initialized default FREE subscription for tenant: free_default_tenant
+[2026-05-28 00:05:43,080] [INFO] [tenant_middleware] [tenant_middleware.py:32] - Registered Tenant request context scope: Tenant=free_default_tenant, Plan=free
+[2026-05-28 00:05:43,083] [INFO] [tenant_routes] [tenant_routes.py:23] - Onboarding endpoint request for: ID=tenant_block_runner, Plan=free
+[2026-05-28 00:05:43,083] [INFO] [tenant_service] [tenant_service.py:20] - Onboarding new Tenant profile: ID=tenant_block_runner, Name=Block Runner Inc, Plan=free
+[2026-05-28 00:05:43,083] [INFO] [subscription_manager] [subscription_manager.py:56] - Initiating subscription for Tenant: tenant_block_runner, Plan=free
+[2026-05-28 00:05:43,083] [INFO] [stripe_gateway] [stripe_gateway.py:34] - [Stripe MOCK] Created customer: Name=Tenant_tenant_block_runner, Email=block@runner.com, ID=cus_mock_af1c806d
+[2026-05-28 00:05:43,083] [INFO] [stripe_gateway] [stripe_gateway.py:60] - [Stripe MOCK] Subscribing customer cus_mock_af1c806d to price price_free_tier. SubscriptionID=sub_mock_6a17397f
+[2026-05-28 00:05:43,083] [INFO] [subscription_manager] [subscription_manager.py:46] - Updated subscription cache for tenant tenant_block_runner: Plan=free, Status=active
+[2026-05-28 00:05:43,084] [INFO] [tenant_middleware] [tenant_middleware.py:40] - Cleared request contextual tenant scopes.
+[2026-05-28 00:05:43,085] [INFO] [tenant_middleware] [tenant_middleware.py:32] - Registered Tenant request context scope: Tenant=tenant_block_runner, Plan=free
+[2026-05-28 00:05:43,086] [INFO] [tenant_middleware] [tenant_middleware.py:40] - Cleared request contextual tenant scopes.
+[2026-05-28 00:05:43,087] [INFO] [tenant_middleware] [tenant_middleware.py:32] - Registered Tenant request context scope: Tenant=tenant_block_runner, Plan=free
+[2026-05-28 00:05:43,088] [INFO] [tenant_middleware] [tenant_middleware.py:40] - Cleared request contextual tenant scopes.
+[2026-05-28 00:05:43,089] [INFO] [tenant_middleware] [tenant_middleware.py:32] - Registered Tenant request context scope: Tenant=tenant_block_runner, Plan=free
+[2026-05-28 00:05:43,089] [INFO] [tenant_middleware] [tenant_middleware.py:40] - Cleared request contextual tenant scopes.
+[2026-05-28 00:05:43,091] [INFO] [tenant_middleware] [tenant_middleware.py:32] - Registered Tenant request context scope: Tenant=tenant_block_runner, Plan=free
+[2026-05-28 00:05:43,092] [INFO] [tenant_middleware] [tenant_middleware.py:40] - Cleared request contextual tenant scopes.
+[2026-05-28 00:05:43,094] [INFO] [tenant_middleware] [tenant_middleware.py:32] - Registered Tenant request context scope: Tenant=tenant_block_runner, Plan=free
+[2026-05-28 00:05:43,094] [INFO] [tenant_middleware] [tenant_middleware.py:40] - Cleared request contextual tenant scopes.
+[2026-05-28 00:05:43,096] [INFO] [tenant_middleware] [tenant_middleware.py:32] - Registered Tenant request context scope: Tenant=tenant_block_runner, Plan=free
+[2026-05-28 00:05:43,096] [INFO] [tenant_middleware] [tenant_middleware.py:40] - Cleared request contextual tenant scopes.
+[2026-05-28 00:05:43,097] [INFO] [tenant_middleware] [tenant_middleware.py:32] - Registered Tenant request context scope: Tenant=tenant_block_runner, Plan=free
+[2026-05-28 00:05:43,098] [INFO] [tenant_middleware] [tenant_middleware.py:40] - Cleared request contextual tenant scopes.
+[2026-05-28 00:05:43,100] [INFO] [tenant_middleware] [tenant_middleware.py:32] - Registered Tenant request context scope: Tenant=tenant_block_runner, Plan=free
+[2026-05-28 00:05:43,100] [INFO] [tenant_middleware] [tenant_middleware.py:40] - Cleared request contextual tenant scopes.
+[2026-05-28 00:05:43,103] [INFO] [tenant_middleware] [tenant_middleware.py:32] - Registered Tenant request context scope: Tenant=tenant_block_runner, Plan=free
+[2026-05-28 00:05:43,103] [INFO] [tenant_middleware] [tenant_middleware.py:40] - Cleared request contextual tenant scopes.
+[2026-05-28 00:05:43,105] [INFO] [tenant_middleware] [tenant_middleware.py:32] - Registered Tenant request context scope: Tenant=tenant_block_runner, Plan=free
+[2026-05-28 00:05:43,105] [INFO] [tenant_middleware] [tenant_middleware.py:40] - Cleared request contextual tenant scopes.
+[2026-05-28 00:05:43,107] [INFO] [tenant_middleware] [tenant_middleware.py:32] - Registered Tenant request context scope: Tenant=tenant_block_runner, Plan=free
+[2026-05-28 00:05:43,108] [WARNING] [quota_middleware] [quota_middleware.py:63] - Enforced quota limit rejection on Tenant tenant_block_runner: Daily API request limit reached (10/10).
+[2026-05-28 00:05:43,108] [INFO] [tenant_middleware] [tenant_middleware.py:40] - Cleared request contextual tenant scopes.
+[2026-05-28 00:05:43,109] [INFO] [subscription_manager] [subscription_manager.py:41] - Initialized default FREE subscription for tenant: tenant_quota_test
+[2026-05-28 00:05:43,109] [INFO] [subscription_manager] [subscription_manager.py:46] - Updated subscription cache for tenant tenant_quota_test: Plan=free, Status=active
+[2026-05-28 00:05:43,134] [INFO] [stripe_gateway] [stripe_gateway.py:34] - [Stripe MOCK] Created customer: Name=Acme Corp, Email=owner@acme.com, ID=cus_mock_d14a30eb
+[2026-05-28 00:05:43,135] [INFO] [stripe_gateway] [stripe_gateway.py:60] - [Stripe MOCK] Subscribing customer cus_mock_d14a30eb to price price_pro_tier. SubscriptionID=sub_mock_6a17397f
+[2026-05-28 00:05:43,136] [INFO] [stripe_gateway] [stripe_gateway.py:91] - [Stripe MOCK] Cancelled subscription sub_mock_6a17397f
+[2026-05-28 00:05:43,136] [INFO] [tenant_manager] [tenant_manager.py:40] - Routed Enterprise dynamic isolated database for Tenant ent_financial_corp: sqlite+aiosqlite:///C:/Users/Chandan Kumar/Desktop/Deepfake-Detection\forensics_ent_financial_corp.db
+[2026-05-28 00:05:43,138] [INFO] [usage_tracking] [usage_tracking.py:110] - Recorded compute footprint for Tenant: tenant_metrics_test: Inferences=2, Duration=0.4500s

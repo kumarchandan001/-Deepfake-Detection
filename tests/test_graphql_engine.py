@@ -441,4 +441,4 @@ class TestGraphQLEngine(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         data = response.json()
         self.assertIn("event_bus", data)
-        self.assertIn("topics", data["event_bus"])
+        self.assertIn("topics_active", data["event_bus"])
