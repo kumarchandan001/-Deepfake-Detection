@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
-export default function WebcamDetector({ socketUrl = "ws://localhost:8000/api/v1/forensics/realtime/stream", onPrediction }) {
+export default function WebcamDetector({ socketUrl, onPrediction }) {
+  const defaultSocketUrl = socketUrl || `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}/api/v1/forensics/realtime/stream`;
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const wsRef = useRef(null);
@@ -54,7 +55,7 @@ export default function WebcamDetector({ socketUrl = "ws://localhost:8000/api/v1
   // Set up WebSocket connection
   const connectWebSocket = () => {
     try {
-      const ws = new WebSocket(socketUrl);
+      const ws = new WebSocket(defaultSocketUrl);
       wsRef.current = ws;
 
       ws.onopen = () => {

@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import torch
 import time
-from typing import Dict, Any, Tuple
+from typing import Dict, Any, Optional, Tuple
 from ai_engine.inference.inference_engine import DeepfakeInferenceEngine
 from ai_engine.preprocessing.face_extractor import FaceExtractor
 from ai_engine.preprocessing.normalization import Normalizer
@@ -96,4 +96,3 @@ class RealtimeStreamProcessor:
         }
         
         return annotated_frame, metadata
-from typing import Optional

@@ -11,14 +11,14 @@ class QuotaEnforcementMiddleware(BaseHTTPMiddleware):
     def __init__(self, app):
         super().__init__(app)
         self.enforcer = QuotaEnforcer()
-        # System-level bypass routes (health check, open API metadata, auth)
+        # System-level bypass routes (health check, open API metadata, auth, and SaaS admin/billing/webhook portals)
         self.bypass_paths = [
             "/",
             "/docs",
             "/openapi.json",
             "/api/v1/auth/login",
             "/api/v1/auth/register",
-            "/api/v1/saas/webhook"  # Ignore Stripe webhook routes to prevent rate blocks
+            "/api/v1/saas"  # Bypass all SaaS registration, subscription, billing, and webhook routes
         ]
 
     async def dispatch(self, request: Request, call_next):
